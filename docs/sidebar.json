@@ -1,0 +1,10 @@
+{
+  "aocutils": {
+    "Overview": "/",
+    "Advent of Code Utils": "datascience.html",
+    "Peter Norvig AoC helper functions": "norvig.html",
+    "Context free grammar": "context_free_grammar.html",
+    "Title": "shunting_yard.html",
+    "My personal AoC lib": "index copy.html"
+  }
+}
