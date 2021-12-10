@@ -46,10 +46,11 @@ nb_path: "00_common.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="to_int" class="doc_header"><code>to_int</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L23" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>to_int</code>(<strong><code>inp</code></strong>)</p>
+<h4 id="to_int" class="doc_header"><code>to_int</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L23" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>to_int</code>(<strong><code>inp</code></strong>:<code>Iterable</code>, <strong><code>intonly</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>returns items converted to int if possible
-also works for tuples and recursively
+keeps lists and tuples intact
+e.g. to_int(['-12', 2, 'a']) returns [-12, 2, 'a']
 watch out because passing a string '12t' will be ripped into a list [1,2,t]</p>
 
 </div>
@@ -76,7 +77,10 @@ watch out because passing a string '12t' will be ripped into a list [1,2,t]</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">to_int</span><span class="p">(</span><span class="s1">&#39;bla 202&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">to_int</span><span class="p">([</span><span class="s2">&quot;12&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">to_int</span><span class="p">([</span><span class="s2">&quot;12&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">intonly</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">to_int</span><span class="p">([[[</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span> <span class="o">==</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+<span class="k">assert</span> <span class="n">to_int</span><span class="p">(</span><span class="s1">&#39;bla 202&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -89,39 +93,11 @@ watch out because passing a string '12t' will be ripped into a list [1,2,t]</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>watch out string will be converted into list of characters
+<pre>watch out string will be converted into list of characters and single digit ints
 </pre>
 </div>
 </div>
 
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&#39;b&#39;, &#39;l&#39;, &#39;a&#39;, &#39; &#39;, 2, 0, 2]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">to_int</span><span class="p">([</span><span class="s2">&quot;12&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;99&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">99</span><span class="p">]</span>
-<span class="k">assert</span> <span class="n">to_int</span><span class="p">([[[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span> <span class="o">==</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -139,9 +115,9 @@ watch out because passing a string '12t' will be ripped into a list [1,2,t]</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="int_only" class="doc_header"><code>int_only</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L46" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>int_only</code>(<strong><code>text</code></strong>:<code>str</code>)</p>
+<h4 id="ints" class="doc_header"><code>ints</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L48" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ints</code>(<strong><code>text</code></strong>:<code>str</code>)</p>
 </blockquote>
-<p>Return a tuple of all the integers in text.</p>
+<p>Return a tuple of all the integers in a string</p>
 
 </div>
 
@@ -171,7 +147,7 @@ watch out because passing a string '12t' will be ripped into a list [1,2,t]</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="flatten" class="doc_header"><code>flatten</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L51" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>flatten</code>(<strong><code>x</code></strong>)</p>
+<h4 id="flatten" class="doc_header"><code>flatten</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L55" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>flatten</code>(<strong><code>x</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -220,7 +196,7 @@ watch out because passing a string '12t' will be ripped into a list [1,2,t]</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="reverse_dict" class="doc_header"><code>reverse_dict</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L63" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>reverse_dict</code>(<strong><code>d</code></strong>)</p>
+<h4 id="reverse_dict" class="doc_header"><code>reverse_dict</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L67" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>reverse_dict</code>(<strong><code>d</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -270,8 +246,16 @@ watch out because passing a string '12t' will be ripped into a list [1,2,t]</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="zippify" class="doc_header"><code>zippify</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L67" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>zippify</code>(<strong><code>iterable</code></strong>, <strong><code>num_args</code></strong>, <strong><code>cat</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="zippify" class="doc_header"><code>zippify</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L71" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>zippify</code>(<strong><code>iterable</code></strong>, <strong><code>len</code></strong>=<em><code>2</code></em>, <strong><code>cat</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
+<p>Zips an iterable with arbitrary length pieces
+e.g. to create a moving window with len n
+Example:
+zippify('abcd',2, cat=False)
+--&gt; [('a', 'b'), ('b', 'c'), ('c', 'd')]</p>
+<p>If cat = True, joins the moving windows together
+zippify('abcd',2, cat=True)
+--&gt; ['ab', 'bc', 'cd']</p>
 
 </div>
 
@@ -297,26 +281,11 @@ watch out because passing a string '12t' will be ripped into a list [1,2,t]</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">zippify</span><span class="p">(</span><span class="s1">&#39;abcdef&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">cat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">zippify</span><span class="p">(</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">cat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;ab&#39;</span><span class="p">,</span> <span class="s1">&#39;bc&#39;</span><span class="p">,</span> <span class="s1">&#39;cd&#39;</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">zippify</span><span class="p">(</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">cat</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">==</span> <span class="p">[(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">)]</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[&#39;abc&#39;, &#39;bcd&#39;, &#39;cde&#39;, &#39;def&#39;]</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -334,8 +303,13 @@ watch out because passing a string '12t' will be ripped into a list [1,2,t]</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="list_multiply" class="doc_header"><code>list_multiply</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L74" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>list_multiply</code>(<strong><code>a</code></strong>, <strong><code>b</code></strong>)</p>
+<h4 id="list_multiply" class="doc_header"><code>list_multiply</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/common.py#L88" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>list_multiply</code>(<strong><code>a</code></strong>, <strong><code>b</code></strong>)</p>
 </blockquote>
+<p>Multiplies two iterables elementwise
+Returns a list</p>
+<p>Example:
+list_multiply([1,2,3],[2,3,4])
+--&gt; [2, 6, 12]</p>
 
 </div>
 
@@ -361,26 +335,10 @@ watch out because passing a string '12t' will be ripped into a list [1,2,t]</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">list_multiply</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">list_multiply</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span> <span class="o">==</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[2, 6, 12]</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 

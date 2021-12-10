@@ -1,6 +1,6 @@
 ---
 
-title: Advent of Code Utils
+title: Grid helpers
 
 
 keywords: fastai
@@ -40,46 +40,11 @@ nb_path: "01_grid.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="arr_to_dict" class="doc_header"><code>arr_to_dict</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L24" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>arr_to_dict</code>(<strong><code>arr</code></strong>)</p>
+<h4 id="arr_to_dict" class="doc_header"><code>arr_to_dict</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L11" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>arr_to_dict</code>(<strong><code>arr</code></strong>)</p>
 </blockquote>
-<p>takes in an numpy array or list and returns a dictionary with indices, values</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grid-helpers">Grid helpers<a class="anchor-link" href="#Grid-helpers"> </a></h2>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="grid2dict" class="doc_header"><code>grid2dict</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L36" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>grid2dict</code>(<strong><code>grid</code></strong>)</p>
-</blockquote>
+<p>takes in an numpy array or list of lists (tuple of tuples) and returns a dictionary with indices, values
+Example
+    arr_to_dict([['a','b'],['c','#']]) == {(0, 0): 'a', (0, 1): 'b', (1, 0): 'c', (1, 1): '#'}</p>
 
 </div>
 
@@ -105,10 +70,28 @@ nb_path: "01_grid.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">grid2dict</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mi">6</span><span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">arr_to_dict</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mi">3</span><span class="p">}</span>
+<span class="k">assert</span> <span class="n">arr_to_dict</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">4</span><span class="p">}</span>
+<span class="k">assert</span> <span class="n">arr_to_dict</span><span class="p">(((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">4</span><span class="p">}</span>
+<span class="k">assert</span> <span class="n">arr_to_dict</span><span class="p">([[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">],[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;#&#39;</span><span class="p">]])</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="s1">&#39;#&#39;</span><span class="p">}</span>
+<span class="k">assert</span> <span class="n">arr_to_dict</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">None</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>only works with list of lists or np.ndarray
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -122,7 +105,46 @@ nb_path: "01_grid.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">grid2dict</span><span class="p">(</span><span class="s1">&#39;1r3</span><span class="se">\n</span><span class="s1">456&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="s1">&#39;6&#39;</span><span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">grid_to_dict</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">arr_to_dict</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+    <span class="c1"># return {(r,c): val for r, row in enumerate(grid) for c, val in enumerate(row)}</span>
+<span class="n">grid_to_dict</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{(0, 0): 1, (0, 1): 2, (0, 2): 3}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">grid_to_dict</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="mi">6</span><span class="p">}</span>
+<span class="k">assert</span> <span class="n">grid_to_dict</span><span class="p">(</span><span class="s1">&#39;1r3</span><span class="se">\n</span><span class="s1">456&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="p">{(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="s1">&#39;6&#39;</span><span class="p">}</span>
 </pre></div>
 
     </div>
@@ -143,7 +165,7 @@ nb_path: "01_grid.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="neighbors" class="doc_header"><code>neighbors</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L42" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>neighbors</code>(<strong><code>i</code></strong>, <strong><code>diag</code></strong>=<em><code>False</code></em>, <strong><code>inc_self</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="neighbors" class="doc_header"><code>neighbors</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L28" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>neighbors</code>(<strong><code>i</code></strong>, <strong><code>diag</code></strong>=<em><code>False</code></em>, <strong><code>inc_self</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>determine the neighbors, returns a set with neighboring tuples {(0,1)}
 if inc_self: returns self in results
@@ -198,7 +220,7 @@ if diag: return diagonal moves as well</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="arr_neighbors" class="doc_header"><code>arr_neighbors</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L61" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>arr_neighbors</code>(<strong><code>arr</code></strong>, <strong><code>diag</code></strong>=<em><code>False</code></em>, <strong><code>inc_self</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="arr_neighbors" class="doc_header"><code>arr_neighbors</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L47" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>arr_neighbors</code>(<strong><code>arr</code></strong>, <strong><code>diag</code></strong>=<em><code>False</code></em>, <strong><code>inc_self</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Returns a dictionary with index: set of neighbor indices
 Parameters: diag to include diagonal neighbors, inc_self to include self in result list
@@ -229,9 +251,8 @@ Usage: for index, neighbor_indices in aoc.arr_neighbors(arr).items():</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">arr_neighbors</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
-<span class="n">n</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">arr_neighbors</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -246,16 +267,7 @@ Usage: for index, neighbor_indices in aoc.arr_neighbors(arr).items():</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[0 1 2]
  [3 4 5]
- [6 7 8]] (3, 3)
-hi (0, 0) {(0, 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, 0), (1, -1), (1, 1)}
-hi (0, 1) {(1, 2), (-1, 1), (0, 0), (-1, 0), (-1, 2), (1, 1), (1, 0), (0, 2)}
-hi (0, 2) {(1, 2), (0, 1), (-1, 1), (1, 3), (-1, 3), (-1, 2), (0, 3), (1, 1)}
-hi (1, 0) {(0, 1), (0, 0), (2, -1), (2, 1), (2, 0), (0, -1), (1, -1), (1, 1)}
-hi (1, 1) {(1, 2), (0, 1), (0, 0), (2, 1), (2, 0), (2, 2), (1, 0), (0, 2)}
-hi (1, 2) {(0, 1), (1, 3), (0, 2), (2, 1), (2, 3), (2, 2), (0, 3), (1, 1)}
-hi (2, 0) {(3, 0), (2, -1), (3, 1), (2, 1), (3, -1), (1, 0), (1, -1), (1, 1)}
-hi (2, 1) {(1, 2), (3, 2), (3, 0), (3, 1), (2, 0), (2, 2), (1, 0), (1, 1)}
-hi (2, 2) {(1, 2), (3, 2), (1, 3), (3, 3), (3, 1), (2, 1), (2, 3), (1, 1)}
+ [6 7 8]]
 </pre>
 </div>
 </div>
@@ -265,15 +277,53 @@ hi (2, 2) {(1, 2), (3, 2), (1, 3), (3, 3), (3, 1), (2, 1), (2, 3), (1, 1)}
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{(0, 0): {(0, 1), (1, 0), (1, 1)},
- (0, 1): {(0, 0), (0, 2), (1, 0), (1, 1), (1, 2)},
- (0, 2): {(0, 1), (1, 1), (1, 2)},
- (1, 0): {(0, 0), (0, 1), (1, 1), (2, 0), (2, 1)},
- (1, 1): {(0, 0), (0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1), (2, 2)},
- (1, 2): {(0, 1), (0, 2), (1, 1), (2, 1), (2, 2)},
- (2, 0): {(1, 0), (1, 1), (2, 1)},
- (2, 1): {(1, 0), (1, 1), (1, 2), (2, 0), (2, 2)},
- (2, 2): {(1, 1), (1, 2), (2, 1)}}</pre>
+<pre>{(0, 0): {(0, 1), (1, 0)},
+ (0, 1): {(0, 0), (0, 2), (1, 1)},
+ (0, 2): {(0, 1), (1, 2)},
+ (1, 0): {(0, 0), (1, 1), (2, 0)},
+ (1, 1): {(0, 1), (1, 0), (1, 2), (2, 1)},
+ (1, 2): {(0, 2), (1, 1), (2, 2)},
+ (2, 0): {(1, 0), (2, 1)},
+ (2, 1): {(1, 1), (2, 0), (2, 2)},
+ (2, 2): {(1, 2), (2, 1)}}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arr_neighbors</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{(0, 0): {(0, 1), (1, 0)},
+ (0, 1): {(0, 0), (0, 2), (1, 1)},
+ (0, 2): {(0, 1), (1, 2)},
+ (1, 0): {(0, 0), (1, 1)},
+ (1, 1): {(0, 1), (1, 0), (1, 2)},
+ (1, 2): {(0, 2), (1, 1)}}</pre>
 </div>
 
 </div>
@@ -295,7 +345,7 @@ hi (2, 2) {(1, 2), (3, 2), (1, 3), (3, 3), (3, 1), (2, 1), (2, 3), (1, 1)}
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="iterate" class="doc_header"><code>iterate</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L77" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>iterate</code>(<strong><code>grid</code></strong>)</p>
+<h4 id="iterate" class="doc_header"><code>iterate</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L63" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>iterate</code>(<strong><code>grid</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -326,7 +376,7 @@ hi (2, 2) {(1, 2), (3, 2), (1, 3), (3, 3), (3, 1), (2, 1), (2, 3), (1, 1)}
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="dimensions" class="doc_header"><code>dimensions</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L85" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dimensions</code>(<strong><code>obj</code></strong>)</p>
+<h4 id="dimensions" class="doc_header"><code>dimensions</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L71" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dimensions</code>(<strong><code>obj</code></strong>, <strong><code>axis</code></strong>=<em><code>0</code></em>)</p>
 </blockquote>
 <p>takes an iterable of iterables and returns a namedtuple with minima, maxima and range
 for example a 2d numpy array
@@ -356,32 +406,10 @@ dim.min, dim.max and dim.range</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">dimensions</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">]])</span> <span class="o">==</span> <span class="n">Dim</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">max</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Example</p>
-
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">out</span> <span class="o">=</span> <span class="n">dimensions</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">]])</span>
-<span class="n">out</span><span class="o">.</span><span class="n">min</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">]]</span>
+<span class="k">assert</span> <span class="n">dimensions</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span> <span class="o">==</span> <span class="n">Dim</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">max</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">assert</span> <span class="n">dimensions</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">matrix</span><span class="p">))</span> <span class="o">==</span> <span class="n">Dim</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">max</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">dimensions</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">]])</span>
 </pre></div>
 
     </div>
@@ -396,7 +424,7 @@ dim.min, dim.max and dim.range</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(1, 2, 3)</pre>
+<pre>Dim(min=(1, 2, 3), max=(10, 9, 8), range=(9, 7, 5))</pre>
 </div>
 
 </div>
@@ -418,7 +446,7 @@ dim.min, dim.max and dim.range</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="positive" class="doc_header"><code>positive</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L98" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>positive</code>(<strong>*<code>args</code></strong>)</p>
+<h4 id="positive" class="doc_header"><code>positive</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L88" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>positive</code>(<strong>*<code>args</code></strong>)</p>
 </blockquote>
 <p>takes 1 or multiple lists of n coordinates and returns it normalized (getting rid of negatives)</p>
 
@@ -453,7 +481,7 @@ dim.min, dim.max and dim.range</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">positive</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)])</span> <span class="o">==</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">positive</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)])</span> <span class="o">==</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
 </pre></div>
 
     </div>
@@ -474,7 +502,7 @@ dim.min, dim.max and dim.range</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="manhattan" class="doc_header"><code>manhattan</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>manhattan</code>(<strong><code>x</code></strong>, <strong><code>y</code></strong>)</p>
+<h4 id="manhattan" class="doc_header"><code>manhattan</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L111" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>manhattan</code>(<strong><code>x</code></strong>, <strong><code>y</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -522,7 +550,7 @@ dim.min, dim.max and dim.range</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="conv1d" class="doc_header"><code>conv1d</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L126" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>conv1d</code>(<strong><code>arr</code></strong>, <strong><code>conv_shape</code></strong>, <strong><code>mode</code></strong>=<em><code>'same'</code></em>, <strong><code>padding</code></strong>=<em><code>None</code></em>, <strong><code>pad_dir</code></strong>=<em><code>'center'</code></em>)</p>
+<h4 id="conv1d" class="doc_header"><code>conv1d</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L115" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>conv1d</code>(<strong><code>arr</code></strong>, <strong><code>conv_shape</code></strong>, <strong><code>mode</code></strong>=<em><code>'same'</code></em>, <strong><code>padding</code></strong>=<em><code>None</code></em>, <strong><code>pad_dir</code></strong>=<em><code>'center'</code></em>)</p>
 </blockquote>
 <p>Returns a list of kernel views of a string or list
 mode == 'valid': returns only results where the kernel fits
@@ -574,7 +602,7 @@ when mode =='same', default padding is the outer value</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="conv2d" class="doc_header"><code>conv2d</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L169" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>conv2d</code>(<strong><code>arr</code></strong>, <strong><code>conv_shape</code></strong>, <strong><code>mode</code></strong>=<em><code>'valid'</code></em>, <strong><code>padding</code></strong>=<em><code>None</code></em>, <strong><code>pad_dir</code></strong>=<em><code>'center'</code></em>)</p>
+<h4 id="conv2d" class="doc_header"><code>conv2d</code><a href="https://github.com/jvanelteren/aocutils/tree/main/aocutils/grid.py#L158" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>conv2d</code>(<strong><code>arr</code></strong>, <strong><code>conv_shape</code></strong>, <strong><code>mode</code></strong>=<em><code>'valid'</code></em>, <strong><code>padding</code></strong>=<em><code>None</code></em>, <strong><code>pad_dir</code></strong>=<em><code>'center'</code></em>)</p>
 </blockquote>
 <p>Returns a list of kernel views of a string or list
 mode == 'valid': returns only results where the kernel fits
